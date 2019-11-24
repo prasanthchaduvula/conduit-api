@@ -4,21 +4,21 @@ var User = require("../models/user");
 var jwt = require("jsonwebtoken");
 
 // Registration of user
-router.post("/register",(req,res,next)=>{
+router.post("/register",(req,res)=>{
   console.log(req.body);
   User.create(req.body,(err,user)=> {
-    if(err) return next(err);
+    if(err) return res.json({err});
     res.json({user});
   })
 })
 
 // login of user
-router.post("/login",(req,res,next)=> {
+router.post("/login",(req,res)=> {
   console.log(req.body);
   let {password,email} = req.body;
   User.findOne({email},(err,user)=> {
-    if(err) return next(err);
-    if(!user) return next("valid email");
+    if(err) return res.json({err});
+    if(!user) return res.json("valid email");
     console.log(user);
     if(!user.verifyPassword(password))  return res.redirect("/users/login");
     // jwt

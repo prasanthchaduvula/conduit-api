@@ -19,6 +19,10 @@ mongoose.connect("mongodb://localhost/conduit-api",
 var usersRouter = require('./routes/users');
 var userRouter = require('./routes/user');
 var profilesRouter = require('./routes/profiles');
+var articlesRouter = require('./routes/articles');
+var tagsRouter = require('./routes/tags');
+
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -30,6 +34,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/users', usersRouter);
 app.use('/api/user', userRouter);
 app.use('/api/profiles', profilesRouter);
+app.use('/api/articles', articlesRouter);
+app.use('/api/tags', tagsRouter);
+
+
 
 
 

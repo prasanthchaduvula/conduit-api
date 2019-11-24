@@ -22,7 +22,21 @@ var userSchema = new Schema({
         type: String,
         required: true
     },
-    bio: String
+    bio: String,
+    following: {
+        type: [String]
+    },
+    followers: {
+        type: [String]
+    },
+    articlesId: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Article'
+    }],
+    commentsId: {
+        type: [Schema.Types.ObjectId],
+        ref: 'Comment'
+    }
 },{timestamps:true})
 
 
